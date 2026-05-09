@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
 app.use(express.json());
@@ -8,7 +9,8 @@ app.use(cors());
 
 // MongoDB URI provided by the user
 // const mongoURI = "mongodb+srv://vijaym8254:Vijay@123@nitthealth.bxjbyvs.mongodb.net/nitthealth";
-const mongoURI = dotenv.MONGO_URI; // Fallback to local MongoDB
+console.log("MongoDB URI from .env:", process.env.MONGO_URI);
+const mongoURI = process.env.MONGO_URI; // Fallback to local MongoDB
 mongoose.connect(mongoURI)
   .then(() => {
     console.log("MongoDB Connected");
