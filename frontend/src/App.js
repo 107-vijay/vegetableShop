@@ -10,7 +10,8 @@ function App() {
 
   useEffect(() => {
     // Fetch products from backend
-    axios.get('http://localhost:5000/api/products')
+    console.log("Fetching products from:", `${process.env.REACT_APP_API_URL}/api/products`);
+    axios.get(`${process.env.REACT_APP_API_URL}/api/products`)
       .then(res => setProducts(res.data))
       .catch(err => console.error("Error fetching products:", err));
   }, []);
@@ -30,7 +31,8 @@ function App() {
       address: customer.address
     };
 
-    axios.post('http://localhost:5000/api/orders', orderData)
+    console.log("Placing order with data:", orderData);
+    axios.post(`${process.env.REACT_APP_API_URL}/api/orders`, orderData)
       .then(() => {
         alert("Order Placed Successfully!");
         setCart([]);
